@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-
+    private PlayerController playerController;
     private Rigidbody2D m_playerRig;
     public float max_Speed_horizontal;
     public float max_SpeedVertical = 5f;
@@ -21,6 +21,7 @@ public class PlayerMotor : MonoBehaviour
     private void Start()
     {
         m_playerRig = GetComponent<Rigidbody2D>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -71,12 +72,12 @@ public class PlayerMotor : MonoBehaviour
         }
         else
         {
-            if (energyFiyTime < maxEnergy)
+            if (energyFiyTime < maxEnergy&&playerController.canGetEnergy())
                 energyFiyTime += Time.deltaTime *0.8f;
         }
         if (lowStatus)
         {
-            if (energyFiyTime < maxEnergy)
+            if (energyFiyTime < maxEnergy&&playerController.canGetEnergy())
                 energyFiyTime += Time.deltaTime * 1.8f;
         }
     }

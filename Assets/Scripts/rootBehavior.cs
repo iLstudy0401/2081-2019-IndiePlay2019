@@ -6,9 +6,11 @@ public class rootBehavior : MonoBehaviour {
 
     private float time;
     public float inter = 2f;
+    private PlayerController playerController;
 
     private void Start()
     {
+        playerController = GameObject.FindObjectOfType<PlayerController>();
         this.GetComponent<Collider2D>().isTrigger = true;
         this.GetComponent<SpriteRenderer>().enabled = false;
     }
@@ -20,6 +22,7 @@ public class rootBehavior : MonoBehaviour {
         {
             this.GetComponent<Collider2D>().isTrigger = true;
             this.GetComponent<SpriteRenderer>().enabled = false;
+            playerController.unVisual();
         }
 	}
 }
