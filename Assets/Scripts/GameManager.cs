@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
-        reSetPos = player.transform.position;
-        CameraPos = new Vector3(player.transform.position.x, player.transform.position.y, -10);
         mainCamera = Camera.main;
         ReSetPlayer();
     }
