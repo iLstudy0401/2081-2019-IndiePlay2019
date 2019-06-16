@@ -18,6 +18,8 @@ public class PlayerMotor : MonoBehaviour
     private bool m_jump = false;
     private bool lowStatus = false;
 
+    public float reverorySpeed = 1.5f;
+
     private void Start()
     {
         m_playerRig = GetComponent<Rigidbody2D>();
@@ -32,7 +34,7 @@ public class PlayerMotor : MonoBehaviour
     public void Move(float _horizontal, bool _jump, float _current)
     {
         m_jump = _jump;
-        float horizontal = _horizontal*3f;
+        float horizontal = _horizontal * 3f;
         horizontal = Mathf.Clamp(horizontal, -1, 1);
         m_playerRig.velocity = new Vector2(horizontal * max_Speed_horizontal, m_playerRig.velocity.y);
 
@@ -72,13 +74,13 @@ public class PlayerMotor : MonoBehaviour
         }
         else
         {
-            if (energyFiyTime < maxEnergy&&playerController.canGetEnergy())
-                energyFiyTime += Time.deltaTime *0.8f;
+            if (energyFiyTime < maxEnergy && playerController.canGetEnergy())
+                energyFiyTime += Time.deltaTime * (reverorySpeed);
         }
         if (lowStatus)
         {
-            if (energyFiyTime < maxEnergy&&playerController.canGetEnergy())
-                energyFiyTime += Time.deltaTime * 1.8f;
+            if (energyFiyTime < maxEnergy && playerController.canGetEnergy())
+                energyFiyTime += Time.deltaTime * (reverorySpeed + 1f);
         }
     }
 }

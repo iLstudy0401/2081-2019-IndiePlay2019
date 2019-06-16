@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private bool platVisualize = false;
     public float radius = 2f;
+    private float time;
 
     private void Start()
     {
@@ -36,7 +37,16 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            StartCoroutine(JumpCount());
+            time = Time.time;
+        }
+
+        if (Time.time - time < timeToGetEnergy)
+        {
+            GetEnergy = false;
+        }
+        else
+        {
+            GetEnergy = true;
         }
 
         if (!platVisualize)
@@ -64,13 +74,6 @@ public class PlayerController : MonoBehaviour
             ins.transform.RotateAround(ins.transform.position, Vector3.back, front * angle);
         }
         */
-    }
-
-    private IEnumerator JumpCount()
-    {
-        GetEnergy = false;
-        yield return new WaitForSeconds(timeToGetEnergy);
-        GetEnergy = true;
     }
 
     public bool canGetEnergy()
